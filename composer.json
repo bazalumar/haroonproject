@@ -6,17 +6,25 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "backpack/crud": "^6.7",
+        "backpack/theme-coreuiv2": "^1.2",
+        "backpack/theme-tabler": "^1.2",
+        "doctrine/dbal": "^4.0",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "laravel/ui": "^4.5"
     },
     "require-dev": {
+        "backpack/generators": "^4.0",
         "fakerphp/faker": "^1.23",
+        "laravel/breeze": "*",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
         "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-laravel": "^2.3",
+        "san-kumar/laravel-crud": "^1.0",
         "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
@@ -31,6 +39,7 @@
             "Tests\\": "tests/"
         }
     },
+    
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -46,7 +55,8 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
-        ]
+        ],
+        "post-install-cmd": ["@php artisan storage:link --quiet"]
     },
     "extra": {
         "laravel": {
@@ -63,5 +73,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "backpack": {
+            "type": "composer",
+            "url": "https://repo.backpackforlaravel.com/"
+        }
+    }
 }
