@@ -7,6 +7,7 @@ use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
 use App\Models\FormModel;
 use App\Models\SalaryModel;
+use App\Models\Email;
 use Illuminate\Support\Facades\Mail;
 
 use function Pest\Laravel\delete;
@@ -71,24 +72,47 @@ class FormController extends Controller
         $form->Loan = $req->Loan;
         $form->save();
 
-        
+
 
         // dd($req->Salary, '5000-7999',$req->Salary == '5000-7999');
-
+        $adminmails = $this->fetchEmails('admin');
         if ($req->Loan == 'creditcard') {
-            if (env('EmailsActive') == true) {
-                Mail::to(env('CreditCardMail'))->cc(explode(',' , env('CreditCardMailCC')))->send(new ContactFormMail($form));
+            $creditCardEmails = $this->fetchEmails('credit');
+            if(count($creditCardEmails) > 0){
+                Mail::to($form->email)->bcc($creditCardEmails)->send(new ContactFormMail($form));
             }
         }
-        if ($form->salary->minimum_salary >= '5000' && $form->salary->maximum_salary <= '7999') {
-            Mail::to(env('MinimumSalaryMail'))->send(new ContactFormMail($form));
+        if ($form->salary->minimum_salary >= '5000' && $form->salary->maximum_salary <= '1000') {
+            $maxEmails = $this->fetchEmails('above-5k');
+            if (count($maxEmails) > 0) {
+                Mail::to($maxEmails)->bcc($adminmails)->send(new ContactFormMail($form));
+            }
         } else {
-          
-            Mail::to(env('AboveMaximumSalary'))->send(new ContactFormMail($form));
+            $minimumEmails = $this->fetchEmails('minimum-5k');
+            if(count($minimumEmails) > 0){
+                (Mail::to($minimumEmails)->bcc($adminmails)->send(new ContactFormMail($form)));
+            }
         }
+
+        if(count($adminmails)>0){
+            Mail::to($form->email)->bcc($adminmails)->send(new ContactFormMail($form));
+        }        
+        
+
 
         return redirect()->route('route-viewall');
     }
+
+    public function fetchEmails($type){
+        $emails = Email::where('email_type', $type)->where('status', 'active')->get() ?? [];
+        if(count($emails) > 0){
+            $emails = $emails->pluck('email')->toArray();
+            return $emails;
+        } else {
+            return [];
+        }
+    }
+
 
     public function updateForm(Request $req, $id)
     {
@@ -109,7 +133,7 @@ class FormController extends Controller
         $form->salary_id = $req->salary_id;
         $form->LoanM = $req->LoanM;
         $form->Loan = $req->Loan;
-        
+
 
         $form->save();
         return redirect()->route('route-viewall');
@@ -120,16 +144,14 @@ class FormController extends Controller
         $salaries = SalaryModel::all();
         $cities = ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Ras al Khaimah', 'Umm-AL Qaiwain', 'Fujiarah', 'Al-Ain'];
         $employmentStatus = ['salaried', 'Business'];
-        return view('forms.edit', compact('form', 'cities', 'employmentStatus' ,'salaries'));
+        return view('forms.edit', compact('form', 'cities', 'employmentStatus', 'salaries'));
     }
     public function deleteform(Request $req, $id)
     {
-       
+
         $form =  FormModel::find($id);
         $form->delete();
 
         return redirect()->route('route-viewall');
     }
-   
-
 }

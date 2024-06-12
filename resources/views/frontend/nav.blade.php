@@ -1,4 +1,5 @@
  <!-- ***** Preloader Start ***** -->
+ 
  <div id="js-preloader" class="js-preloader">
      <div class="preloader-inner">
          <span class="dot"></span>
@@ -16,8 +17,11 @@
          <div class="row">
              <div class="col-lg-8 col-md-8">
                  <ul class="info">
-                     <li><i class="fa fa-envelope"></i> info@company.com</li>
-                     <li><i class="fa fa-map"></i> Sunny Isles Beach, FL 33160</li>
+                    <a href="mailto:info@uaebankingsol.com" target="_blank">
+                     <li><i class="fa fa-envelope"></i> info@uaebankingsol.com</li>
+                     </a>
+                   
+                     <li><i class="fa fa-map"></i>Ras Al Khaima Free Zone UAE</li>
                  </ul>
              </div>
              <div class="col-lg-4 col-md-4">
@@ -41,18 +45,19 @@
              <div class="col-12">
                  <nav class="main-nav">
                      <!-- ***** Logo Start ***** -->
-                     <a href="index.html" class="logo">
-                         <h1>Villa</h1>
+                     <a href="#" class="logo">
+                        <img src="{{ asset('frontend-assets/images/logo-haroon.jpeg') }}"  alt="">
                      </a>
                      <!-- ***** Logo End ***** -->
                      <!-- ***** Menu Start ***** -->
-                     <ul class="nav">
-                         <li><a href="index.html" class="active">Home</a></li>
-                         <li><a href="properties.html">services</a></li>
-                         <li><a href="property-details.html">Blogs</a></li>
-                         <li><a href="contact.html">Contact Us</a></li>
-                         <li><a href="loan.html"><i class="fa fa-money-bill-wave"></i> Apply For Loan</a></li>
-                     </ul>
+                    <ul class="nav">
+    <li><a href="{{ route('route-home') }}" class="{{ Request::routeIs('route-home') ? 'active' : '' }}">Home</a></li>
+    <li><a href="{{ route('route-services') }}" class="{{ Request::routeIs('route-services') ? 'active' : '' }}">Services</a></li>
+    <li><a href="{{ route('blogs.index') }}" class="{{ Request::routeIs('blogs.index') ? 'active' : '' }}">Blogs</a></li>
+    <li><a href="{{ route('route-contact') }}" class="{{ Request::routeIs('route-contact') ? 'active' : '' }}">Contact Us</a></li>
+    <li><a href="{{ route('route-loan') }}" class="{{ Request::routeIs('route-loan') ? 'active' : '' }}"><i class="fa fa-money-bill-wave"></i> Apply For Loan</a></li>
+</ul>
+
                      <a class='menu-trigger'>
                          <span>Menu</span>
                      </a>

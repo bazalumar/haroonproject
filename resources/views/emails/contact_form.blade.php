@@ -15,6 +15,6 @@
 
 
 
-    Thanks,<br>
+    Thanks,
     {{ config('app.name') }}
 </x-mail::message>

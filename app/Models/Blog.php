@@ -2,31 +2,18 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Blog
- *
- * @property $id
- * @property $created_at
- * @property $updated_at
- *
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
 class Blog extends Model
 {
-    use CrudTrait;
-    
-    protected $perPage = 20;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [];
+    protected $fillable = [
+        'title', 'image', 'content', 'slug','date','meta_tittle','meta_description','key_words'
+    ];
 
-
+    protected $dates = [
+        'date',
+    ];
 }

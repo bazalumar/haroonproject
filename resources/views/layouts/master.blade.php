@@ -17,11 +17,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.0/tagify.css">
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap-extended.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/colors.css') }}">
@@ -84,7 +87,8 @@
                     <div class="me-75"><img src="../../../app-assets/images/icons/xls.png" alt="png"
                             height="32"></div>
                     <div class="search-data">
-                        <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing
+                        <p class="search-data-title mb-0">Two new item submitted</p><small
+                            class="text-muted">Marketing
                             Manager</small>
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;17kb</small>
@@ -262,9 +266,9 @@
                     </ul>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="index.html">
-    <i data-feather="dollar-sign"></i>
-    <span class="menu-title text-truncate" data-i18n="Dashboards"> Salary Management</span>
-</a>
+                        <i data-feather="dollar-sign"></i>
+                        <span class="menu-title text-truncate" data-i18n="Dashboards"> Salary Management</span>
+                    </a>
 
 
                     <ul class="menu-content">
@@ -278,7 +282,61 @@
 
                     </ul>
                 </li>
-                
+                <li class=" nav-item"><a class="d-flex align-items-center" href="index.html">
+                        <i class="fas fa-phone"></i> <!-- Font Awesome contact icon -->
+                        <span class="menu-title text-truncate" data-i18n="Dashboards">Contact</span>
+                    </a>
+
+
+
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{{ route('route-addnewcontact') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Analytics">Add new contact</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{{ route('route-viewallcontact') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="eCommerce">View all contact</span></a>
+
+                    </ul>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="index.html">
+                        <i class="fas fa-blog"></i>
+                        <span class="menu-title text-truncate" data-i18n="Dashboards">Blog</span>
+                    </a>
+
+
+
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{{ route('admin.blogs.create') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Analytics">Add new blog</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{{ route('admin.blogs.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="eCommerce">View all blog</span></a>
+
+                    </ul>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="index.html">
+                        <i class="fas fa-blog"></i>
+                        <span class="menu-title text-truncate" data-i18n="Dashboards">email</span>
+                    </a>
+
+
+
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{{ route('route-addnewemail') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Analytics">Add new email</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{{ route('route-viewallemail') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="eCommerce">View all email</span></a>
+
+                    </ul>
+                </li>
+
 
             </ul>
         </div>
@@ -315,6 +373,7 @@
 
     <!-- BEGIN: Page Vendor JS-->
     <!-- END: Page Vendor JS-->
+    <script src="../../../app-assets/js/owl-carousel.js"></script>
 
     <!-- BEGIN: Theme JS-->
     <script src="../../../app-assets/js/core/app-menu.js"></script>
@@ -324,6 +383,10 @@
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/page-pricing.js"></script>
     <!-- END: Page JS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.0/jQuery.tagify.min.js"></script>
+    @yield('scripts')
 
     <script>
         $(window).on('load', function() {
